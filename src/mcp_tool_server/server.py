@@ -233,9 +233,7 @@ class Server:
             return protocol.make_response(
                 msg_id,
                 {
-                    "content": [
-                        {"type": "text", "text": f"Unknown tool: {tool_name}"}
-                    ],
+                    "content": [{"type": "text", "text": f"Unknown tool: {tool_name}"}],
                     "isError": True,
                 },
             )
@@ -265,7 +263,9 @@ class Server:
             return protocol.make_response(
                 msg_id,
                 {
-                    "content": [{"type": "text", "text": f"{type(exc).__name__}: {exc}"}],
+                    "content": [
+                        {"type": "text", "text": f"{type(exc).__name__}: {exc}"}
+                    ],
                     "isError": True,
                 },
             )

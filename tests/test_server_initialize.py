@@ -28,7 +28,5 @@ def test_initialized_notification_has_no_response():
 
 def test_namespaced_initialized_notification_has_no_response():
     server = Server(name="test-server", version="0.0.1")
-    response = server.handle(
-        {"jsonrpc": "2.0", "method": "notifications/initialized"}
-    )
+    response = server.handle({"jsonrpc": "2.0", "method": "notifications/initialized"})
     assert response is None

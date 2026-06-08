@@ -8,9 +8,7 @@ from mcp_tool_server.server import Server
 
 def test_unknown_method_returns_method_not_found():
     server = Server(name="t", version="0.0.1")
-    response = server.handle(
-        {"jsonrpc": "2.0", "id": 1, "method": "no/such/method"}
-    )
+    response = server.handle({"jsonrpc": "2.0", "id": 1, "method": "no/such/method"})
 
     assert response is not None
     assert response["error"]["code"] == protocol.METHOD_NOT_FOUND

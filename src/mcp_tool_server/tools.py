@@ -38,7 +38,10 @@ def current_time(timezone: str = "UTC") -> str:
 
     try:
         tz = ZoneInfo(timezone)
-    except ZoneInfoNotFoundError:
+    except (ZoneInfoNotFoundError, ValueError):
+        # ZoneInfoNotFoundError covers unknown zone names; ValueError covers
+        # malformed keys (empty string, path-traversal-style inputs like
+        # "../../etc/passwd"). Both mean "can't resolve" — fall back to UTC.
         return datetime.now(tz=_dt_timezone.utc).isoformat()
 
     return datetime.now(tz=tz).isoformat()
